@@ -7,7 +7,7 @@ async function getCharacters() {
     return data.results;
 }
 
-function fiter_by_status(characters, status) {
+function filter_by_status(characters, status) {
   return characters.filter(chara => chara.status === status);
 }
 
@@ -20,17 +20,4 @@ function replace_spaces(characters) {
   }));
 }
 
-app.get("/characters", async (request, response) => {
-  try {
-    const characters = await getCharacters();
-    const alive = fiter_by_status(characters, "Alive");
-    const modifiedNames = { modifiedNames: replace_spaces(alive) };
-    response.json(modifiedNames);
-  } catch (error) {
-    response.status(500).json({ error: "Error datils: ", detalle: error.message });
-  }
-});
-
-app.listen(3000, () => {
-  console.log("Servidor corriendo en http://localhost:3000");
-});
+module.exports = {getCharacters, filter_by_status, replace_spaces}
