@@ -10,6 +10,9 @@ async function getAliveCharacters(request, response) {
     const modifiedNames = { results: replace_spaces(alive) };
     response.json(modifiedNames);
   } catch (error) {
+    if(error.message.includes(`404`)){
+      return response.status(404).json({ error: `Page ${page} not found`});
+    }
     response.status(500).json({ error: "Error details: ", detalle: error.message });
   }
 }

@@ -13,9 +13,9 @@ describe("GET /characters", () => {
     expect(response.status).toBe(200);
   });
 
-  test("get characters with impossible page", async () => {
+  test("get characters with invalid page", async () => {
     const response = await request(app).get("/characters/80");
-    expect(response.status).toBe(500);
+    expect(response.status).toBe(404);
   });
 
   test("response contains array", async () => {
@@ -30,6 +30,7 @@ describe("GET /characters", () => {
 
   test("only alive character", async () => {
     const response = await request(app).get("/characters");
+    expect(response.body.results.length).toBeGreaterThan(0);
     response.body.results.forEach(character => {
       expect(character.status).toBe("Alive");
     });

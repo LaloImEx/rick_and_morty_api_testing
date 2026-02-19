@@ -10,6 +10,9 @@ async function getCharacters() {
 async function getCharactersByPage(num_page) {  
     const response = await fetch(`https://rickandmortyapi.com/api/character/?page=${num_page}`);
     const data = await response.json();
+    if(!data.results){
+        throw new Error(`404`);
+    }
     return data.results;
 }
 
