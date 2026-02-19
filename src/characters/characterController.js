@@ -1,8 +1,8 @@
 const { getCharacters, getCharactersByPage, filter_by_status, replace_spaces } = require("./characterService");
 
 async function getAliveCharacters(request, response) {
+  const {page} = request.params;
   try {
-    const {page} = request.params;
     const characters = page 
     ? await getCharactersByPage(page)
     : await getCharacters();
