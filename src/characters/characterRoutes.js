@@ -3,6 +3,6 @@ const router = express.Router();
 const { getAliveCharacters, getAliveCharactersByPage } = require("./characterController");
 
 router.get("/characters", getAliveCharacters);
-router.get("/characters/:page", getAliveCharactersByPage);
+router.get("/characters/:page", getAliveCharacters);
 
 module.exports = router;

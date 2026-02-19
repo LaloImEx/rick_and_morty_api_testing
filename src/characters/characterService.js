@@ -7,8 +7,8 @@ async function getCharacters() {
     return data.results;
 }
 
-async function getCharactersByPage(page) {  
-    const response = await fetch("https://rickandmortyapi.com/api/character/?page="+page);
+async function getCharactersByPage(num_page) {  
+    const response = await fetch(`https://rickandmortyapi.com/api/character/?page=${num_page}`);
     const data = await response.json();
     return data.results;
 }
@@ -26,4 +26,4 @@ function replace_spaces(characters) {
   }));
 }
 
-module.exports = {getCharacters, getCharactersByPage, filter_by_status, replace_spaces}
+module.exports = {getCharacters, filter_by_status, replace_spaces, getCharactersByPage}
